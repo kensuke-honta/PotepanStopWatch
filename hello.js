@@ -22,12 +22,12 @@ let progressedMs = 0;
         let nowMs = Date.now();  
         progressedMs = nowMs - startMs;
         let ms = Math.floor(progressedMs / 100) % 10;
-        let s  = Math.floor(progressedMs / 1000) % 10; 
-        let zs  = Math.floor(progressedMs / 1000 /10) % 6;
-        let m = Math.floor(progressedMs / 1000 / 60) % 60;
+        let s  = Math.floor(progressedMs / 1000) % 60 ; 
+        let m = Math.floor(progressedMs / 1000 / 60) % 10;
+        let zm = Math.floor(progressedMs / 1000 / 60 / 10); 
 
 
-        time.textContent = `${m}:${zs}:${s}:${ms}`;
+        time.textContent = `${zm}:${m}:${s}:${ms}`;
       }, 10);
      } else{
       state = "start"
