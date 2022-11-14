@@ -5,21 +5,23 @@ const reset = document.getElementById('reset');
 
 let state ="start";
 let timerId;
-
+let progressedMs = 0;
 //時間表示部分
 
 //スタートボタン
 
   start.addEventListener("click",() => {
      if (state === "start"){
-         state = "stop";
+        
+      let startMs = Date.now(); //開始時間m秒
+      startMs -= progressedMs;
 
-      let startMs = Date.now(); //開始時間
+      
 
       timerId = setInterval(() => {
-        let nowMs = Date.now();
-        let progressedMs = nowMs - startMs;
-        let ms = progressedMs % 10;
+        let nowMs = Date.now();  
+        progressedMs = nowMs - startMs;
+        let ms = Math.floor(progressedMs / 100) % 10;
         let s  = Math.floor(progressedMs / 1000) % 10; 
         let zs  = Math.floor(progressedMs / 1000 /10) % 6;
         let m = Math.floor(progressedMs / 1000 / 60) % 60;
@@ -29,7 +31,7 @@ let timerId;
       }, 10);
      } else{
       state = "start"
-     
+      
      }
 
     
@@ -45,7 +47,7 @@ let timerId;
 stop.addEventListener("click",() => {
   clearInterval(timerId);
   document.getElementById('stop').setAttribute("disabled", true);
-  document.getElementById('start').setAttribute("disabled", true);
+  document.getElementById('start').removeAttribute("disabled");
   document.getElementById('reset').removeAttribute("disabled");
 
 
