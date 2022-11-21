@@ -15,16 +15,26 @@ function buttonPressed(){
         }
     }
     
-    if(text === "="){
-      concatText = eval(concatText);
-    }else if(text === "AC"){
-          concatText = "";
-    } else{
-      concatText += text;
-    }
-    
-    result.textContent = concatText;
-  }
+    if (text === "=") {
+        concatText = eval(concatText);
+      } else if (text === "AC") {
+        concatText = "";
+      } else if (concatText === "0" && text === "0") {
+        concatText = "0";
+      }  else if (concatText === "" && text === "0") {
+        concatText = "0";
+      } else if (concatText === "" && text === "00") {
+        concatText = "0";
+      } else if (concatText === "0" && text === ".") {
+        concatText = "0.";
+      } else if (concatText === "0" && text !== "0") {
+        concatText = text;
+      } else if (concatText === "" && text === ".") {
+        concatText = "0.";
+      } else {
+        concatText += text;
+      } result.textContent = concatText;
+    }    
 
   //以下関数
 
@@ -45,19 +55,18 @@ function checkOperator(op){
     }
     return result;
 }
-/*最初は”００”が入力できないようにする
-function (){
 
-}
-//小数点は一度しか入力できないようにする処理
-function (){
 
-}
-//”０１２”などの表記の制御
-function (){
 
-}
-//最初の演算子は”ー”しか入力できないようにする
-function checkFirstOperator(){
+/*const point = document.getElementById(`point`);
+point.addEventListener(`click`,() =>{
 
+})
+function check00(){
+    if(text.slice( 0, 2 ) === "00"){
+        text.disabled =true;
+    }
+     else 
+       return result;
 }*/
+
